@@ -141,7 +141,24 @@
                 </Tab>
                   <Tab text="Account Database">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutX="20.0" layoutY="26.0" prefHeight="199.0" prefWidth="385.0" spacing="10.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Print By:" />
+                                    <RadioButton mnemonicParsing="false" text="Last Name" />
+                                    <RadioButton mnemonicParsing="false" text="Date Opened" />
+                                    <RadioButton mnemonicParsing="false" text="No Selection" />
+                                    <Button mnemonicParsing="false" text="Print" />
+                                    <HBox alignment="TOP_CENTER" prefHeight="27.0" prefWidth="251.0" spacing="50.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="Import" />
+                                          <Button mnemonicParsing="false" text="Export" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
                      </content>
                   </Tab>
               </tabs>
