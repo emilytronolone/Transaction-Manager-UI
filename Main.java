@@ -1,3 +1,7 @@
+/**
+@author Devin Gulati, Emily Tronolone
+*/
+
 package application;
 
 import javafx.application.Application;

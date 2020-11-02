@@ -1,11 +1,11 @@
-package application;
-
 /**
 This class creates Profile objects.
 Profile objects represent a human person.
 In this banking system, Profile is used to create owners of accounts.
 @author Devin Gulati, Emily Tronolone
 */
+package application;
+
 public class Profile {
 	private String fname;
 	private String lname;

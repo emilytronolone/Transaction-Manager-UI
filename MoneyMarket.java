@@ -1,11 +1,11 @@
-package application;
-
 /**
 This class is used specifically for money market accounts.
 It is a subclass of Account and overrides the two abstract methods.
 It contains one additional attribute - the number of withdrawals.
 @author Devin Gulati, Emily Tronolone
 */
+package application;
+
 import java.text.DecimalFormat;
 
 public class MoneyMarket extends Account {

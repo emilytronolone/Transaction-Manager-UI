@@ -1,11 +1,11 @@
-package application;
-
 /**
  * This class is used specifically for checking accounts.
  * It is a subclass of Account and overrides the two abstract methods.
  * It contains one additional attribute - directDeposit.
  * @author Devin Gulati, Emily Tronolone
  */
+package application;
+
 import java.text.DecimalFormat;
 
 public class Checking extends Account {

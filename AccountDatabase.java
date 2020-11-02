@@ -1,11 +1,11 @@
-package application;
-
 /**
 This class is used to store all accounts created in this banking system.
 The methods implement various functionalities of the database.
 It also allows for an account to deposit and withdraw.
 @author Devin Gulati, Emily Tronolone
 */
+package application;
+
 import java.text.DecimalFormat;
 
 public class AccountDatabase {

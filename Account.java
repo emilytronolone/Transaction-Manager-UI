@@ -1,11 +1,11 @@
-package application;
-
 /**
 This class is a superclass of Checking, Savings, and MoneyMarket.
 It contains attributes and methods that all account types must have.
 It contains two abstract methods that will be overridden and implemented in the subclasses.
 @author Devin Gulati, Emily Tronolone
 */
+package application;
+
 public abstract class Account {
 	private Profile holder;
 	private double balance;

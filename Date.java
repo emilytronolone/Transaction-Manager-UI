@@ -1,11 +1,10 @@
-package application;
-
 /**
 This class is used to create Date objects containing a month, day, and year.
 It implements the Java interface Comparable.
 It overrides two methods.
 @author Devin Gulati, Emily Tronolone
 */
+package application;
 
 public class Date implements Comparable<Date> {
     private int year;

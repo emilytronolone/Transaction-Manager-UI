@@ -1,11 +1,11 @@
-package application;
-
 /**
 This class is used specifically for savings accounts.
 It is a subclass of Account and overrides the two abstract methods.
 It contains one additional attribute - isLoyal.
 @author Devin Gulati, Emily Tronolone
 */
+package application;
+
 import java.text.DecimalFormat;
 
 public class Savings extends Account {
