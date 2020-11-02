@@ -10,63 +10,78 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 public class Controller {
+	
+	@FXML
+    private TextArea messageArea;
 
-    @FXML // fx:id="messageArea"
-    private TextArea messageArea; // Value injected by FXMLLoader
+    @FXML
+    private TextField firstName1;
 
-    @FXML // fx:id="firstName1"
-    private TextField firstName1; // Value injected by FXMLLoader
+    @FXML
+    private TextField lastName1;
 
-    @FXML // fx:id="lastName1"
-    private TextField lastName1; // Value injected by FXMLLoader
+    @FXML
+    private TextField month;
 
-    @FXML // fx:id="month"
-    private TextField month; // Value injected by FXMLLoader
+    @FXML
+    private TextField day;
 
-    @FXML // fx:id="day"
-    private TextField day; // Value injected by FXMLLoader
+    @FXML
+    private TextField year;
 
-    @FXML // fx:id="year"
-    private TextField year; // Value injected by FXMLLoader
+    @FXML
+    private TextField balance;
 
-    @FXML // fx:id="balance"
-    private TextField balance; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton checking1;
 
-    @FXML // fx:id="checking1"
-    private RadioButton checking1; // Value injected by FXMLLoader
+    @FXML
+    private ToggleGroup accountType1;
 
-    @FXML // fx:id="accountType1"
-    private ToggleGroup accountType1; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton savings1;
 
-    @FXML // fx:id="savings1"
-    private RadioButton savings1; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton moneyMarket1;
 
-    @FXML // fx:id="moneyMarket1"
-    private RadioButton moneyMarket1; // Value injected by FXMLLoader
+    @FXML
+    private CheckBox directDeposit;
 
-    @FXML // fx:id="directDeposit"
-    private CheckBox directDeposit; // Value injected by FXMLLoader
+    @FXML
+    private CheckBox loyalCustomer;
 
-    @FXML // fx:id="loyalCustomer"
-    private CheckBox loyalCustomer; // Value injected by FXMLLoader
+    @FXML
+    private Button openAccountButton;
 
-    @FXML // fx:id="openAccountButton"
-    private Button openAccountButton; // Value injected by FXMLLoader
+    @FXML
+    private Button closeAccountButton;
 
-    @FXML // fx:id="closeAccountButton"
-    private Button closeAccountButton; // Value injected by FXMLLoader
+    @FXML
+    private TextField firstName2;
 
-    @FXML // fx:id="checking2"
-    private RadioButton checking2; // Value injected by FXMLLoader
+    @FXML
+    private TextField lastName2;
 
-    @FXML // fx:id="accountType2"
-    private ToggleGroup accountType2; // Value injected by FXMLLoader
+    @FXML
+    private TextField amount;
 
-    @FXML // fx:id="savings2"
-    private RadioButton savings2; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton checking2;
 
-    @FXML // fx:id="moneyMarket2"
-    private RadioButton moneyMarket2; // Value injected by FXMLLoader
+    @FXML
+    private ToggleGroup accountType2;
+
+    @FXML
+    private RadioButton savings2;
+
+    @FXML
+    private RadioButton moneyMarket2;
+
+    @FXML
+    private Button depositButton;
+
+    @FXML
+    private Button withdrawButton;
 
     AccountDatabase database = new AccountDatabase();
     
@@ -262,4 +277,71 @@ public class Controller {
     	}
     }
 
+    @FXML
+    void deposit(ActionEvent event) {
+    	if (firstName2.getText() == null || firstName2.getText().trim().isEmpty()) {
+    		messageArea.appendText("Please enter your first name.\n");
+    		return;
+    	}
+    	
+    	if (lastName2.getText() == null || lastName2.getText().trim().isEmpty()) {
+    		messageArea.appendText("Please enter your last name.\n");
+    		return;
+    	}
+
+    	double currAmount = validAmount();
+    	if (currAmount == -1) {
+    		messageArea.appendText("Please enter a valid amount.\n");
+    		return;
+    	}
+    	
+    	Profile enteredHolder = new Profile(firstName2.getText(), lastName2.getText());
+    	
+    	if (checking2.isSelected()) {
+    		Checking account = new Checking(enteredHolder, -1, null, false);
+			if (!database.deposit(account, currAmount)) {
+				messageArea.appendText("Account does not exist.\n");
+			} else {
+				messageArea.appendText(currAmount + " deposited into account.\n");
+			}
+    		return;
+    	} else if (savings2.isSelected()) {
+    		Savings account = new Savings(enteredHolder, -1, null, false);
+			if (!database.deposit(account, currAmount)) {
+				messageArea.appendText("Account does not exist.\n");
+			} else {
+				messageArea.appendText(currAmount + " deposited into account.\n");
+			}
+    		return;
+    	} else if (moneyMarket2.isSelected()) {
+    		MoneyMarket account = new MoneyMarket(enteredHolder, -1, null);
+			if (!database.deposit(account, currAmount)) {
+				messageArea.appendText("Account does not exist.\n");
+			} else {
+				messageArea.appendText(currAmount + " deposited into account.\n");
+			}
+    		return;
+    	} else {
+    		messageArea.appendText("Please select an account type.\n");
+    	}
+    }
+    
+    @FXML
+    void withdraw(ActionEvent event) {
+
+    }
+    
+    @FXML
+    double validAmount() {
+    	try {
+    		double doubleTest = Double.parseDouble(amount.getText()); 
+    		return doubleTest;
+    	}
+    	//Show the error message in the TextArea.
+    	catch (NumberFormatException e) {
+    		messageArea.appendText("Please enter a valid amount.\n");
+    		return -1;
+    	}
+    }
+    
 }
