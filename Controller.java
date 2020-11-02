@@ -279,6 +279,11 @@ public class Controller {
 
     @FXML
     void deposit(ActionEvent event) {
+    	if (database.getSize() == 0) {
+    		messageArea.appendText("Database is empty.\n");
+			return;
+		}
+    	
     	if (firstName2.getText() == null || firstName2.getText().trim().isEmpty()) {
     		messageArea.appendText("Please enter your first name.\n");
     		return;
@@ -328,6 +333,11 @@ public class Controller {
     
     @FXML
     void withdraw(ActionEvent event) {
+    	if (database.getSize() == 0) {
+    		messageArea.appendText("Database is empty.\n");
+			return;
+		}
+    	
     	if (firstName2.getText() == null || firstName2.getText().trim().isEmpty()) {
     		messageArea.appendText("Please enter your first name.\n");
     		return;
