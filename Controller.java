@@ -108,7 +108,7 @@ public class Controller {
     	}
     	
     	double currBalance = validBalance();
-    	if (currBalance == -1) {
+    	if (currBalance < 0) {
     		messageArea.appendText("Please enter a valid balance.\n");
     		return;
     	}
@@ -191,7 +191,7 @@ public class Controller {
     	}
     	
     	double currBalance = validBalance();
-    	if (currBalance == -1) {
+    	if (currBalance < 0) {
     		messageArea.appendText("Please enter a valid balance.\n");
     		return;
     	}
@@ -236,7 +236,7 @@ public class Controller {
     	}
     	//Show the error message in the TextArea.
     	catch (NumberFormatException e) {
-    		messageArea.appendText("Please enter a valid balance.\n");
+    		//messageArea.appendText("Please enter a valid balance.\n");
     		return -1;
     	}
     }
@@ -290,7 +290,7 @@ public class Controller {
     	}
 
     	double currAmount = validAmount();
-    	if (currAmount == -1) {
+    	if (currAmount <= 0) {
     		messageArea.appendText("Please enter a valid amount.\n");
     		return;
     	}
@@ -328,7 +328,60 @@ public class Controller {
     
     @FXML
     void withdraw(ActionEvent event) {
+    	if (firstName2.getText() == null || firstName2.getText().trim().isEmpty()) {
+    		messageArea.appendText("Please enter your first name.\n");
+    		return;
+    	}
+    	
+    	if (lastName2.getText() == null || lastName2.getText().trim().isEmpty()) {
+    		messageArea.appendText("Please enter your last name.\n");
+    		return;
+    	}
 
+    	double currAmount = validAmount();
+    	if (currAmount <= 0) {
+    		messageArea.appendText("Please enter a valid amount.\n");
+    		return;
+    	}
+    	
+    	Profile enteredHolder = new Profile(firstName2.getText(), lastName2.getText());
+    	
+    	if (checking2.isSelected()) {
+    		Checking account = new Checking(enteredHolder, -1, null, false);
+    		int withdrawal = database.withdrawal(account, currAmount);
+			if (withdrawal == -1) {
+				messageArea.appendText("Account does not exist.\n");
+			} else if (withdrawal == 0) {
+				messageArea.appendText(currAmount + " withdrawn from account.\n");
+			} else {
+				messageArea.appendText("Insufficient funds.\n");
+			}
+    		return;
+    	} else if (savings2.isSelected()) {
+    		Savings account = new Savings(enteredHolder, -1, null, false);
+    		int withdrawal = database.withdrawal(account, currAmount);
+			if (withdrawal == -1) {
+				messageArea.appendText("Account does not exist.\n");
+			} else if (withdrawal == 0) {
+				messageArea.appendText(currAmount + " withdrawn from account.\n");
+			} else {
+				messageArea.appendText("Insufficient funds.\n");
+			}
+    		return;
+    	} else if (moneyMarket2.isSelected()) {
+    		MoneyMarket account = new MoneyMarket(enteredHolder, -1, null);
+			int withdrawal = database.withdrawal(account, currAmount);
+			if (withdrawal == -1) {
+				messageArea.appendText("Account does not exist.\n");
+			} else if (withdrawal == 0) {
+				messageArea.appendText(currAmount + " withdrawn from account.\n");
+			} else {
+				messageArea.appendText("Insufficient funds.\n");
+			}
+    		return;
+    	} else {
+    		messageArea.appendText("Please select an account type.\n");
+    	}
     }
     
     @FXML
@@ -339,7 +392,7 @@ public class Controller {
     	}
     	//Show the error message in the TextArea.
     	catch (NumberFormatException e) {
-    		messageArea.appendText("Please enter a valid amount.\n");
+    		//messageArea.appendText("Please enter a valid amount.\n");
     		return -1;
     	}
     }
