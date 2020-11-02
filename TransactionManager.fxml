@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -28,7 +29,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextArea prefHeight="400.0" prefWidth="237.0" GridPane.columnIndex="1" />
+            <TextArea fx:id="messageArea" prefHeight="400.0" prefWidth="237.0" GridPane.columnIndex="1" />
             <TabPane prefHeight="400.0" prefWidth="413.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Open/Close Account">
@@ -52,16 +53,16 @@
                                           </VBox>
                                           <VBox prefHeight="91.0" prefWidth="146.0" spacing="10.0">
                                              <children>
-                                                <TextField />
-                                                <TextField />
+                                                <TextField fx:id="firstName1" />
+                                                <TextField fx:id="lastName1" />
                                                 <HBox prefHeight="27.0" prefWidth="145.0" spacing="10.0">
                                                    <children>
-                                                      <TextField prefHeight="27.0" prefWidth="42.0" promptText="mm" />
-                                                      <TextField prefHeight="27.0" prefWidth="42.0" promptText="dd" />
-                                                      <TextField prefHeight="27.0" prefWidth="46.0" promptText="yyyy" />
+                                                      <TextField fx:id="month" onAction="#validMonth" prefHeight="27.0" prefWidth="42.0" promptText="mm" />
+                                                      <TextField fx:id="day" onAction="#validDay" prefHeight="27.0" prefWidth="42.0" promptText="dd" />
+                                                      <TextField fx:id="year" onAction="#validYear" prefHeight="27.0" prefWidth="46.0" promptText="yyyy" />
                                                    </children>
                                                 </HBox>
-                                                <TextField />
+                                                <TextField fx:id="balance" onAction="#validBalance" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -70,23 +71,26 @@
                                        <children>
                                           <VBox prefHeight="73.0" prefWidth="107.0" spacing="10.0">
                                              <children>
-                                                <RadioButton contentDisplay="CENTER" mnemonicParsing="false" text="Checking" />
-                                                <RadioButton contentDisplay="CENTER" mnemonicParsing="false" text="Savings" />
-                                                <RadioButton contentDisplay="CENTER" mnemonicParsing="false" text="MoneyMarket" />
+                                                <RadioButton fx:id="checking1" contentDisplay="CENTER" mnemonicParsing="false" onAction="#disableLoyal" text="Checking">
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="accountType1" />
+                                                   </toggleGroup></RadioButton>
+                                                <RadioButton fx:id="savings1" contentDisplay="CENTER" mnemonicParsing="false" onAction="#disableDirect" text="Savings" toggleGroup="$accountType1" />
+                                                <RadioButton fx:id="moneyMarket1" contentDisplay="CENTER" mnemonicParsing="false" onAction="#disable" text="MoneyMarket" toggleGroup="$accountType1" />
                                              </children>
                                           </VBox>
                                           <VBox prefHeight="18.0" prefWidth="114.0" spacing="10.0">
                                              <children>
-                                                <CheckBox contentDisplay="CENTER" mnemonicParsing="false" text="direct deposit" />
-                                                <CheckBox contentDisplay="CENTER" mnemonicParsing="false" text="loyal customer" />
+                                                <CheckBox fx:id="directDeposit" contentDisplay="CENTER" mnemonicParsing="false" text="direct deposit" />
+                                                <CheckBox fx:id="loyalCustomer" contentDisplay="CENTER" mnemonicParsing="false" text="loyal customer" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="27.0" prefWidth="265.0" spacing="50.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Open Account" />
-                                          <Button mnemonicParsing="false" text="Close Account" />
+                                          <Button fx:id="openAccountButton" mnemonicParsing="false" onAction="#openAccount" text="Open Account" />
+                                          <Button fx:id="closeAccountButton" mnemonicParsing="false" onAction="#closeAccount" text="Close Account" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -123,9 +127,13 @@
                                     </HBox>
                                     <VBox prefHeight="54.0" prefWidth="107.0" spacing="10.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" text="Checking" />
-                                          <RadioButton mnemonicParsing="false" text="Savings" />
-                                          <RadioButton mnemonicParsing="false" text="MoneyMarket" />
+                                          <RadioButton fx:id="checking2" mnemonicParsing="false" text="Checking">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="accountType2" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="savings2" mnemonicParsing="false" text="Savings" toggleGroup="$accountType2" />
+                                          <RadioButton fx:id="moneyMarket2" mnemonicParsing="false" text="MoneyMarket" toggleGroup="$accountType2" />
                                        </children>
                                     </VBox>
                                     <HBox alignment="CENTER" prefHeight="18.0" prefWidth="193.0" spacing="50.0">
