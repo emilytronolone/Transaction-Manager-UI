@@ -144,10 +144,8 @@ public class AccountDatabase {
             this.accounts[j+1] = temp;
         }
     }
-
-    /**
-     * Displays databases sorted by date opened
-     */
+    
+/*
     public void printByDateOpen() {
     	if (this.size == 0) {
             System.out.println("Database is empty.");
@@ -166,9 +164,6 @@ public class AccountDatabase {
         }
     }
 
-    /**
-     * Displays database sorted by last name
-     */
     public void printByLastName() {
     	if (this.size == 0) {
             System.out.println("Database is empty.");
@@ -187,9 +182,6 @@ public class AccountDatabase {
         }
     }
 
-    /**
-     * Displays database
-     */
     public void printAccounts() {
     	if (this.size == 0) {
             System.out.println("Database is empty.");
@@ -201,7 +193,8 @@ public class AccountDatabase {
         }
         System.out.println("--end of listing--");
     }
-
+*/
+    
     /**
      * Getter method for size
      * @return size
