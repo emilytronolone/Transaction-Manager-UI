@@ -1,16 +1,16 @@
 /**
-This class is used to store all accounts created in this banking system.
-The methods implement various functionalities of the database.
-It also allows for an account to deposit and withdraw.
-@author Devin Gulati, Emily Tronolone
-*/
+ This class is used to store all accounts created in this banking system.
+ The methods implement various functionalities of the database.
+ It also allows for an account to deposit and withdraw.
+ @author Devin Gulati, Emily Tronolone
+ */
 package application;
 
 import java.text.DecimalFormat;
 
 public class AccountDatabase {
-	private Account[] accounts;
-	private int size;
+    private Account[] accounts;
+    private int size;
 
     /**
      * Constructor for AccountDatabase, initializes array and sets size to 0
@@ -144,57 +144,72 @@ public class AccountDatabase {
             this.accounts[j+1] = temp;
         }
     }
-    
-/*
-    public void printByDateOpen() {
+
+    /**
+     * Sorts by date open and concats into string
+     * @return sorted database in string
+     */
+    public String printByDateOpen() {
     	if (this.size == 0) {
-            System.out.println("Database is empty.");
-            return;
+            return "Database is empty.";
         }
     	this.sortByDateOpen();
+        String retval = "";
         DecimalFormat format = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        System.out.println("--Printing statements by date open--\n");
+        retval += "--Printing statements by date open--\n";
         for(int i = 0; i < size; i++){
-            System.out.println(accounts[i].toString());
-            System.out.println("-interest: " + accounts[i].monthlyInterest());
-            System.out.println("-fee: " + accounts[i].monthlyFee());
-            System.out.println("-new balance: " +
+            retval += accounts[i].toString() + "\n";
+            retval += "-interest: " + accounts[i].monthlyInterest() + "\n";
+            retval += "-fee: " + accounts[i].monthlyFee() + "\n";
+            retval += "-new balance: " +
                     format.format(accounts[i].getBalance() + (accounts[i].monthlyInterest()) -
-                            accounts[i].monthlyFee()) + "\n");
+                            accounts[i].monthlyFee()) + "\n";
         }
+        return retval;
     }
 
-    public void printByLastName() {
+    /**
+     * sorts by last name and concats into string
+     * @return string representation of database
+     */
+    public String printByLastName() {
     	if (this.size == 0) {
-            System.out.println("Database is empty.");
-            return;
+            return "Database is empty.";
         }
     	this.sortByLastName();
+    	String retval = "";
         DecimalFormat format = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        System.out.println("--Printing statements by last name--\n");
+        retval += "--Printing statements by last name--\n";
         for(int i = 0; i < size; i++){
-            System.out.println(accounts[i].toString());
-            System.out.println("-interest: " + accounts[i].monthlyInterest());
-            System.out.println("-fee: " + accounts[i].monthlyFee());
-            System.out.println("-new balance: " +
+            retval += accounts[i].toString() + "\n";
+            retval += "-interest: " + accounts[i].monthlyInterest() + "\n";
+            retval += "-fee: " + accounts[i].monthlyFee() + "\n";
+            retval += "-new balance: " +
                     format.format(accounts[i].getBalance() + (accounts[i].monthlyInterest()) -
-                            accounts[i].monthlyFee()) + "\n");
+                            accounts[i].monthlyFee()) + "\n";
         }
+        return retval;
     }
 
-    public void printAccounts() {
+    /**
+     * concats database into string
+     * @return string form of database
+     */
+    public String printAccounts() {
     	if (this.size == 0) {
-            System.out.println("Database is empty.");
-            return;
+            return "Database is empty.";
         }
-    	System.out.println("--Listing all accounts in database--");
+    	String retval = "--Listing all accounts in database--";
+    	retval += "\n";
         for(int i = 0; i < size; i++){
-            System.out.println(accounts[i].toString());
+            retval += accounts[i].toString();
+            retval += "\n";
         }
-        System.out.println("--end of listing--");
+        retval += "--end of listing--";
+        return retval;
     }
-*/
-    
+
+
     /**
      * Getter method for size
      * @return size
